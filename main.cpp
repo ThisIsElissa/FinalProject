@@ -13,12 +13,14 @@ void intro();
 void wrongInput();
 void gamePlay();
 int scenarioType = CHOOSEWORLD;
+int roomChoice();
+void worldPrompt();
+void findHub();
 
 
 int main() {
    intro();
    gamePlay();
-
 
 
 
@@ -45,50 +47,14 @@ void gamePlay(){
     do{
         switch (scenarioType){
             case CHOOSEWORLD:
-                int worldChoice;
-                std::cout << "The astronomers are gathered around the ships map to choose which world they will search. "
-                             "Choose which world for them below:\n 1) Venera\n 2) Erkir\n 3) Utarid\n";
-                std::cin>> worldChoice;
-                if (worldChoice == 1){
-                    scenarioType=VENERA;
-                }
-                else if(worldChoice==2){
-                    scenarioType=ERKIR;
-                }
-                else if(worldChoice==3){
-                    scenarioType=UTARID;
-                }
-                else{
-                    wrongInput();
-                    scenarioType=CHOOSEWORLD;
-                }
-
-                break;
+               worldPrompt();//user chooses world
+               break;
 
             case VENERA:
-                int directionChoice;
-                std::cout<< "The team has arrived at Venera. Should the astronomers search for the supply hub by choosing a"
-                            " direction, or finding higher ground?\n 1) North\n 2) South\n 3) East\n 4) West\n 5) Search "
-                            "for higher ground\n";
-                std::cin>>directionChoice;
-                if(directionChoice<5){
-                    std::cout<< "The astronomers have walked 7 miles and have not found anything. They do not have much "
-                                "time to find the hub before it gets dark, they decide to search for higher ground. Once "
-                                "they found higher ground they spotted the hub quickly. They wish that they would have "
-                                "searched for higher ground first.\n";
-                    scenarioType = VARRIVAL;
-
-                }
-                else if(directionChoice==5){
-                    std::cout<< "The astronomers found where the hub was with ease and are glad they did not spend their "
-                                "time searching aimlessly.\n";
-                    scenarioType = VARRIVAL;
-                }
-                else{
-                    wrongInput();
-                    scenarioType=VENERA;
-                }
+                findHub();
                 break;
+
+
 
             case ERKIR:
                 break;
@@ -96,15 +62,66 @@ void gamePlay(){
             case UTARID:
                 break;
 
-            case VARRIVAL:
-                int roomChoice;
-                std::cout<<"The hub has two rooms, the room to the left contains living areas and the room to the right"
-                           " contains storage. The right room door is locked, should they try to unlock it or "
-                           "search the unlocked room to the left?\n 1) Left\n 2) Right\n";
-                std::cin>>roomChoice;
-                break;
+
         };
     } while (scenarioType>0);
 
 
+}
+
+
+int roomChoice(){
+    int leftRight;
+    std::cout<<"The hub has two rooms, the room to the left contains living areas and the room to the right"
+               " contains storage. The right room door is locked, should they try to unlock it or "
+               "search the unlocked room to the left?\n 1) Left\n 2) Right\n";
+    std::cin>>leftRight;
+    switch(leftRight){
+        case 1:
+            std::cout<< "The living area was bare of most supplies, it looks like another group "
+    }
+
+}
+
+void worldPrompt(){
+    int worldChoice;
+    std::cout << "The astronomers are gathered around the ship's map to choose which world they will search. "
+                 "Choose which world for them below:\n 1) Venera\n 2) Erkir\n 3) Utarid\n";
+    std::cin>> worldChoice;
+    switch(worldChoice){
+        case 1:
+            scenarioType=VENERA;
+            break;
+        case 2:
+            scenarioType=ERKIR;
+            break;
+        case 3:
+            scenarioType=UTARID;
+            break;
+        default:
+            wrongInput();
+    }
+}
+
+void findHub(){
+    int directionChoice;
+    std::cout<< "The team has arrived at Venera. Should the astronomers search for the supply hub by choosing a"
+                " direction, or finding higher ground?\n 1) Choose a direction\n 2) Search "
+                "for higher ground\n";
+    std::cin>>directionChoice;
+    switch(directionChoice){
+        case 1:
+            std::cout<< "The astronomers have walked 7 miles and have not found anything. They do not have much "
+                        "time to find the hub before it gets dark, they decide to search for higher ground. Once "
+                        "they found higher ground they spotted the hub quickly. They wish that they would have "
+                        "searched for higher ground first.\n";
+            roomChoice();
+            break;
+        case 2:
+            std::cout<< "The astronomers found where the hub was with ease and are glad they did not spend their "
+                        "time searching aimlessly.\n";
+            roomChoice();
+            break;
+        default: wrongInput();
+    }
 }

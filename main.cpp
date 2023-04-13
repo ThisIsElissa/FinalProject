@@ -17,7 +17,7 @@ int scenarioType = CHOOSEWORLD;//where the initial switch case starts at
 void playAgain();//prompt user to play again
 
 //Venera Functions
-int roomChoice();//function that prompts user to choose room
+void roomChoice();//function that prompts user to choose room
 void findHub();//function that prompts user to choose direction
 
 //Inventory
@@ -62,7 +62,7 @@ void gamePlay(){
                break;
 
             case VENERA:
-                findHub();
+                    findHub();
                 break;
 
 
@@ -74,6 +74,7 @@ void gamePlay(){
                 break;
 
             case GAMEOVER:
+                playAgain();
                 break;
 
         };
@@ -83,51 +84,56 @@ void gamePlay(){
 }
 
 
-int roomChoice(){
-    int leftRight;
+void roomChoice(){
     int keyCount = 0;
-    std::cout<<"The hub has two rooms, the room to the left contains living areas and the room to the right"
-               " contains storage. The right room door is locked, should they try to unlock it or "
-               "search the unlocked room to the left?\n 1) Left\n 2) Right\n";
-    std::cin>>leftRight;
-    switch(leftRight){
-        case 1://left
-            std::cout<< "The living area was bare of most supplies, it looks like another group must have been here "
+    do{
+        int leftRight;
+        std::cout<<"The hub has two rooms, the room to the left contains living areas and the room to the right"
+                   " contains storage. The right room door is locked, should they try to unlock it or "
+                   "search the unlocked room to the left?\n 1) Left\n 2) Right\n";
+        std::cin>>leftRight;
+        switch(leftRight){
+            case 1://left
+                std::cout<< "The living area was bare of most supplies, it looks like another group must have been here "
                             "since the astronomers last visited. The scientist has found a key for the locked storage room."
                             "The team goes to unlock the storage room door.\n";
-            leftRight = 3;
-            break;
+                leftRight = 3;
+                keyCount=1;
+                break;
 
-        case 2:
-            int keyOrSuit;
-            std::cout<< "The team is unable to open the door with their space suits on, they might break them. The "
-                        "oxygen indicator in the hub shows a safe level, but their suits have not alerted them that "
-                        "it is safe. Should they:\n 1) Take off their suits to push on the door\n 2) Keep their suits "
-                        "on and search the key in the living area\n";
-            std::cin>>keyOrSuit;
+            case 2:
+                int keyOrSuit;
+                std::cout<< "The team is unable to open the door with their space suits on, they might break them. The "
+                            "oxygen indicator in the hub shows a safe level, but their suits have not alerted them that "
+                            "it is safe. Should they:\n 1) Take off their suits to push on the door\n 2) Keep their suits "
+                            "on and search the key in the living area\n";
+                std::cin>>keyOrSuit;
                 switch(keyOrSuit){
                     case 1:
-                        leftRight=1;
-                        break;
-                    case 2:
                         std::cout<<"The oxygen sensor in the hub was faulty. The team has died and you have failed to "
                                    "bring them home";
-                        playAgain();//prompts user to play again
+                        scenarioType=GAMEOVER;
+                        break;
+                    case 2:
+                        leftRight=1;
                         break;
 
                 }
-            break;
-        case 3:
-            std::cout<< "The astronomers unlock the storage room door, where there is a broken radio taken apart. "
-                        "They are able find a receiver in the mess. They have succeeded in their mission to this "
-                        "world";
+                break;
+            case 3:
+                std::cout<< "The astronomers unlock the storage room door, where there is a broken radio taken apart. "
+                            "They are able find a receiver in the mess. They have succeeded in their mission to this "
+                            "world";
+                receiverCount=1;
 
-            scenarioType = CHOOSEWORLD;
-            break;
+                scenarioType = CHOOSEWORLD;
+                break;
 
 
 
         }
+    } while(receiverCount==0);
+
 
 
 }
@@ -154,29 +160,33 @@ void worldPrompt(){//prompt to change case
 
 void findHub(){
     int directionChoice;
-    std::cout<< "The team has arrived at Venera. Should the astronomers search for the supply hub by choosing a"
-                " direction, or finding higher ground?\n 1) Choose a direction\n 2) Search "
-                "for higher ground\n";
-    std::cin>>directionChoice;
-    switch(directionChoice){
-        case 1:
-            std::cout<< "The astronomers have walked 7 miles and have not found anything. They do not have much "
-                        "time to find the hub before it gets dark, they decide to search for higher ground. Once "
-                        "they found higher ground they spotted the hub quickly. They wish that they would have "
-                        "searched for higher ground first.\n";
-            roomChoice();
-            break;
-        case 2:
-            std::cout<< "The astronomers found where the hub was with ease and are glad they did not spend their "
-                        "time searching aimlessly.\n";
-            roomChoice();
-            break;
-        default: wrongInput();
+    while(receiverCount==0){
+        std::cout<< "The team has arrived at Venera. Should the astronomers search for the supply hub by choosing a"
+                    " direction, or finding higher ground?\n 1) Choose a direction\n 2) Search "
+                    "for higher ground\n";
+        std::cin>>directionChoice;
+        switch(directionChoice){
+            case 1:
+                std::cout<< "The astronomers have walked 7 miles and have not found anything. They do not have much "
+                            "time to find the hub before it gets dark, they decide to search for higher ground. Once "
+                            "they found higher ground they spotted the hub quickly. They wish that they would have "
+                            "searched for higher ground first.\n";
+                roomChoice();
+                break;
+            case 2:
+                std::cout<< "The astronomers found where the hub was with ease and are glad they did not spend their "
+                            "time searching aimlessly.\n";
+                roomChoice();
+                break;
+            default: wrongInput();
+        }
     }
+
 }
 
 void playAgain(){
     std::cout<<"Would you like to play again? Press 1 to play again or anything else to exit the game\n";
     std::cin>>scenarioType;
+
 }
 

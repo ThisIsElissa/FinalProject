@@ -6,16 +6,27 @@ const int CHOOSEWORLD = 1;
 const int VENERA = 2;
 const int ERKIR = 3;
 const int UTARID = 4;
-const int VARRIVAL =5;
+
 
 //prototypes
-void intro();
-void wrongInput();
-void gamePlay();
-int scenarioType = CHOOSEWORLD;
-int roomChoice();
-void worldPrompt();
-void findHub();
+void intro();//prompt when starting game
+void wrongInput();//general template for user entering wrong input
+void gamePlay();// leads to full game/first choice
+void worldPrompt();//function for user to choose world
+int scenarioType = CHOOSEWORLD;//where the initial switch case starts at
+void playAgain();//prompt user to play again
+
+//Venera Functions
+int roomChoice();//function that prompts user to choose room
+void findHub();//function that prompts user to choose direction
+
+//Inventory
+int receiverCount = 0;
+int transductorCount = 0;
+int transmitterCount = 0;
+
+
+
 
 
 int main() {
@@ -39,8 +50,8 @@ void intro(){
                  " fix their communication system, they will be unable to return home. Along the way, you will be helping them make decisions "
                  "that will impact whether or not they will make it back to Earth. \n";
 }
-void wrongInput(){
-    std::cout<<"You have entered an invalid choice.\n";
+void wrongInput(){//general template for user entering wrong input
+    std::cout<<"You have entered an invalid choice.\n \n";
 }
 
 void gamePlay(){
@@ -62,6 +73,8 @@ void gamePlay(){
             case UTARID:
                 break;
 
+            case GAMEOVER:
+                break;
 
         };
     } while (scenarioType>0);
@@ -72,18 +85,54 @@ void gamePlay(){
 
 int roomChoice(){
     int leftRight;
+    int keyCount = 0;
     std::cout<<"The hub has two rooms, the room to the left contains living areas and the room to the right"
                " contains storage. The right room door is locked, should they try to unlock it or "
                "search the unlocked room to the left?\n 1) Left\n 2) Right\n";
     std::cin>>leftRight;
     switch(leftRight){
-        case 1:
-            std::cout<< "The living area was bare of most supplies, it looks like another group "
-    }
+        case 1://left
+            std::cout<< "The living area was bare of most supplies, it looks like another group must have been here "
+                            "since the astronomers last visited. The scientist has found a key for the locked storage room."
+                            "The team goes to unlock the storage room door.\n";
+            leftRight = 3;
+            break;
+
+        case 2:
+            int keyOrSuit;
+            std::cout<< "The team is unable to open the door with their space suits on, they might break them. The "
+                        "oxygen indicator in the hub shows a safe level, but their suits have not alerted them that "
+                        "it is safe. Should they:\n 1) Take off their suits to push on the door\n 2) Keep their suits "
+                        "on and search the key in the living area\n";
+            std::cin>>keyOrSuit;
+                switch(keyOrSuit){
+                    case 1:
+                        leftRight=1;
+                        break;
+                    case 2:
+                        std::cout<<"The oxygen sensor in the hub was faulty. The team has died and you have failed to "
+                                   "bring them home";
+                        playAgain();//prompts user to play again
+                        break;
+
+                }
+            break;
+        case 3:
+            std::cout<< "The astronomers unlock the storage room door, where there is a broken radio taken apart. "
+                        "They are able find a receiver in the mess. They have succeeded in their mission to this "
+                        "world";
+
+            scenarioType = CHOOSEWORLD;
+            break;
+
+
+
+        }
+
 
 }
 
-void worldPrompt(){
+void worldPrompt(){//prompt to change case
     int worldChoice;
     std::cout << "The astronomers are gathered around the ship's map to choose which world they will search. "
                  "Choose which world for them below:\n 1) Venera\n 2) Erkir\n 3) Utarid\n";
@@ -125,3 +174,9 @@ void findHub(){
         default: wrongInput();
     }
 }
+
+void playAgain(){
+    std::cout<<"Would you like to play again? Press 1 to play again or anything else to exit the game\n";
+    std::cin>>scenarioType;
+}
+

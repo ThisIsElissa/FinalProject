@@ -24,7 +24,7 @@ void findHub();//function that prompts user to choose direction
 int receiverCount = 0;
 int transductorCount = 0;
 int transmitterCount = 0;
-
+int inventoryCount = receiverCount+transductorCount+transmitterCount;
 
 
 
@@ -55,14 +55,14 @@ void wrongInput(){//general template for user entering wrong input
 }
 
 void gamePlay(){
-    do{
+    while(inventoryCount<4){
         switch (scenarioType){
             case CHOOSEWORLD:
-               worldPrompt();//user chooses world
+                worldPrompt();//user chooses world
                break;
 
             case VENERA:
-                    findHub();
+                findHub();
                 break;
 
 
@@ -78,7 +78,7 @@ void gamePlay(){
                 break;
 
         };
-    } while (scenarioType>0);
+    }
 
 
 }
@@ -86,12 +86,14 @@ void gamePlay(){
 
 void roomChoice(){
     int keyCount = 0;
+    int leftRight;
+    std::cout<<"The hub has two rooms, the room to the left contains living areas and the room to the right"
+               " contains storage. The right room door is locked, should they try to unlock it or "
+               "search the unlocked room to the left?\n 1) Left\n 2) Right\n";
+    std::cin>>leftRight;
+
     do{
-        int leftRight;
-        std::cout<<"The hub has two rooms, the room to the left contains living areas and the room to the right"
-                   " contains storage. The right room door is locked, should they try to unlock it or "
-                   "search the unlocked room to the left?\n 1) Left\n 2) Right\n";
-        std::cin>>leftRight;
+
         switch(leftRight){
             case 1://left
                 std::cout<< "The living area was bare of most supplies, it looks like another group must have been here "

@@ -3,4 +3,4 @@ project(FinalProject)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(FinalProject main.cpp planet.cpp planet.h venera.cpp venera.h utarid.cpp utarid.h)
+add_executable(FinalProject main.cpp planet.cpp planet.h venera.cpp venera.h utarid.cpp utarid.h erkir.cpp erkir.h)

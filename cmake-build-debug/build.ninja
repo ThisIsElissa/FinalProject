@@ -73,6 +73,12 @@ build CMakeFiles/FinalProject.dir/utarid.cpp.obj: CXX_COMPILER__FinalProject_Deb
   OBJECT_DIR = CMakeFiles\FinalProject.dir
   OBJECT_FILE_DIR = CMakeFiles\FinalProject.dir
 
+build CMakeFiles/FinalProject.dir/erkir.cpp.obj: CXX_COMPILER__FinalProject_Debug C$:/Users/eliss/CLionProjects/FinalProject/erkir.cpp || cmake_object_order_depends_target_FinalProject
+  DEP_FILE = CMakeFiles\FinalProject.dir\erkir.cpp.obj.d
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles\FinalProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\FinalProject.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target FinalProject
@@ -81,7 +87,7 @@ build CMakeFiles/FinalProject.dir/utarid.cpp.obj: CXX_COMPILER__FinalProject_Deb
 #############################################
 # Link the executable FinalProject.exe
 
-build FinalProject.exe: CXX_EXECUTABLE_LINKER__FinalProject_Debug CMakeFiles/FinalProject.dir/main.cpp.obj CMakeFiles/FinalProject.dir/planet.cpp.obj CMakeFiles/FinalProject.dir/venera.cpp.obj CMakeFiles/FinalProject.dir/utarid.cpp.obj
+build FinalProject.exe: CXX_EXECUTABLE_LINKER__FinalProject_Debug CMakeFiles/FinalProject.dir/main.cpp.obj CMakeFiles/FinalProject.dir/planet.cpp.obj CMakeFiles/FinalProject.dir/venera.cpp.obj CMakeFiles/FinalProject.dir/utarid.cpp.obj CMakeFiles/FinalProject.dir/erkir.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\FinalProject.dir

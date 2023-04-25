@@ -3,6 +3,7 @@
 #include "planet.h"
 #include "venera.h"
 #include "utarid.h"
+#include "erkir.h"
 #include <chrono>
 #include <thread>
 
@@ -18,7 +19,6 @@
 
 
 //const storylines
-const int GAMEOVER = 0;
 const int CHOOSEWORLD = 1;
 const int VENERA = 2;
 const int ERKIR = 3;
@@ -45,7 +45,7 @@ void invRand();//random inventory assignment for items needed
 
 //Inventory
 int foundReceiver= 0;
-int foundTransductor = 1;
+int foundTransductor = 0;
 int foundTransmitter = 0;
 int inventoryCount = foundReceiver+foundTransductor+foundTransmitter;
 
@@ -86,9 +86,6 @@ void intro() {
 void gamePlay(){
     while(inventoryCount<4){
         switch (scenarioType){
-            case GAMEOVER:
-                playAgain();
-                break;
             case CHOOSEWORLD:
                 worldPrompt();//user chooses world
                 break;
@@ -103,13 +100,9 @@ void gamePlay(){
 
             case VENERA:
                 veneraCase();
-
                 break;
-
         }
     }
-
-
 }
 
 
@@ -197,7 +190,7 @@ void veneraCase(){
 
 }
 void erkirCase(){
-    /*erkir eTest;
+    erkir eTest;
     if(foundTransductor==0){
         eTest.welcomeErkir();//player enters venera scenario
         if(eTest.getTransductorCount() == 1){
@@ -213,7 +206,6 @@ void erkirCase(){
     else{
         visitedPlanet();//prompts user to choose another planet
     }
-     */
 }
 
 

@@ -34,6 +34,8 @@ void printInv();//print inventory
 void visitedPlanet();// prompts user to choose a different world
 void utaridCase();
 void veneraCase();
+void erkirCase();
+void playerWon();//checks if all items have been found
 
 /*
 
@@ -43,7 +45,7 @@ void invRand();//random inventory assignment for items needed
 
 //Inventory
 int foundReceiver= 0;
-int foundTransductor = 0;
+int foundTransductor = 1;
 int foundTransmitter = 0;
 int inventoryCount = foundReceiver+foundTransductor+foundTransmitter;
 
@@ -92,7 +94,7 @@ void gamePlay(){
                 break;
 
             case ERKIR:
-
+                erkirCase();
                 break;
 
             case UTARID:
@@ -137,8 +139,7 @@ void playAgain(){
     foundReceiver=0;
     foundTransmitter=0;
     foundTransductor=0;
-    std::cout<<"\n\n============= \nYou Lost!\n============= \n\nWould you like to play again? Press 1 to"
-               " play again or anything else to exit the game\n";
+    std::cout<<"Would you like to play again? Press 1 to play again or anything else to exit the game\n";
     std::cin>>scenarioType;
 
 }
@@ -163,6 +164,7 @@ void utaridCase(){
         if(uTest.getTransmitterCount()==1){
             foundTransmitter++;//adds to transmitter count
             printInv();//prints players current inventory
+            playerWon();//checks if all items have been found
             worldPrompt();//prompts user to choose new world
         }
         else{
@@ -182,6 +184,7 @@ void veneraCase(){
         if(vTest.getReceiverCount() == 1){
             foundReceiver++;//adds to receiver count
             printInv();//prints players current inventory
+            playerWon();//checks if all items have been found
             worldPrompt();//prompts user to choose new world
         }
         else {
@@ -192,4 +195,36 @@ void veneraCase(){
         visitedPlanet();//prompts user to choose another planet
     }
 
+}
+void erkirCase(){
+    /*erkir eTest;
+    if(foundTransductor==0){
+        eTest.welcomeErkir();//player enters venera scenario
+        if(eTest.getTransductorCount() == 1){
+            foundTransductor++;//adds to receiver count
+            printInv();//prints players current inventory
+            playerWon();//checks if all items have been found
+            worldPrompt();//prompts user to choose new world
+        }
+        else {
+            playAgain();//
+        }
+    }
+    else{
+        visitedPlanet();//prompts user to choose another planet
+    }
+     */
+}
+
+
+void playerWon(){//checks if all items have been found
+    if (foundReceiver == 1 && foundTransmitter == 1 && foundTransductor == 1){
+        std::cout<<"\n\n=============== \nYou Won!\n===============\n\n"
+                   "The astronomers are able to repair their communication system and regain contact with earth.\n"
+                   "They all are able to return home to their families\n\n";
+        playAgain();
+    }
+    else{
+        return;
+    }
 }

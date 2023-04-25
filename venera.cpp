@@ -16,18 +16,30 @@ void venera::findHub(){
         std::cin>>directionChoice;
         switch(directionChoice){
             case 1:
-                std::cout<< "The astronomers have walked 7 miles and have not found anything. They do not have much "
-                            "time to find the hub before it gets dark, they decide to search for higher ground. Once "
-                            "they found higher ground they spotted the hub quickly. They wish that they would have "
-                            "searched for higher ground first.\n";
-                roomChoice();
+                int toxicWater;
+                std::cout<< "The astronomers come across a mysterious body of water while walking.\n"
+                            "Scientist Christiaan Huygens believes it may release a toxic gas.\n"
+                            "Should they:\n 1) Continue walking past it\n 2) Turn around and search "
+                            "for higher ground\n";
+                std::cin>> toxicWater;
+                if(toxicWater==1){
+                    std::cout<< "The scientist was right, the entire group passed out as they walked past "
+                                "the gas and died from extended exposure.";
+                    return;
+                }
+                else if(toxicWater==2){
+                    std::cout<< "The astronomers found where the hub was with ease after finding higher ground. They are "
+                                "glad they did not risk walking past the potentially toxic water.\n";
+                    roomChoice();
+                    return;
+                }
                 return;
             case 2:
                 std::cout<< "The astronomers found where the hub was with ease and are glad they did not spend their "
                             "time searching aimlessly.\n";
                 roomChoice();
                 return;
-            //default: wrongInput();
+            default: planet::wrongInput();
         }
     }
 
@@ -71,15 +83,10 @@ void venera::findHub(){
                     break;
                 case 3:
                     std::cout<< "The astronomers unlock the storage room door, where there is a broken radio taken apart.\n"
-                                "=============== \nItems Found\n===============\nReceiver: 1\n";
+                                "=============== \nItems Found\n===============\nReceiver: 1\n\n\n";
                     receiverCount = 1; // 1 means completed
                     return;
-
-
-
-
-
-
+                default: wrongInput();
             }
         } while(receiverCount==0);
 

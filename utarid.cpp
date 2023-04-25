@@ -91,10 +91,12 @@ void utarid::findHub() {
                      "time to find the hub before it\ngets dark, they decide to search for higher ground. Once "
                      "they found higher ground they spotted the hub quickly. They\nwish that they would have "
                      "searched for higher ground first.\n";
+        findingTransmitter();
         
     } else if (directionChoice == 2) {
         std::cout << "\n\nThe astronomers found where the hub was with ease and are glad they did not spend their "
                      "time searching aimlessly.\n";
+        findingTransmitter();
     }
 }
     void utarid::playUtarid() {

@@ -31,16 +31,15 @@ void gamePlay();// leads to full game/first choice
 void playAgain();//prompt user to play again
 void intro();//prompt when starting game
 void printInv();//print inventory
+void visitedPlanet();// prompts user to choose a different world
+void utaridCase();
+void veneraCase();
+
 /*
-//prototypes
-void wrongInput();//general template for user entering wrong input
+
 void invRand();//random inventory assignment for items needed
 
 */
-
-//Venera Functions
-void roomChoice();//function that prompts user to choose room
-void findHub();//function that prompts user to choose direction
 
 //Inventory
 int foundReceiver= 0;
@@ -48,7 +47,6 @@ int foundTransductor = 0;
 int foundTransmitter = 0;
 int inventoryCount = foundReceiver+foundTransductor+foundTransmitter;
 
-//finish venera loop
 
 
 int main() {
@@ -59,24 +57,7 @@ int main() {
 
     return 0;
 }
-/*
-void intro(){
-    std::cout << "A group of astronomers are in a future setting where intergalactic space travel is made possible through Astral "
-                 "gates that use hyperspace to travel. Ships can travel through Astral gates to reach different galaxies and planets. "
-                 "Among the astronomers there is Captain Mary Somerville, the Medic Charles Messier, the scientist and cook Christiaan "
-                 "Huygens, and the engineer Caroline Herschel. The astronomers experienced their communication system breaking as they "
-                 "were exploring different planets. Without their communication system they are now unable to ask Earth to open an Astral "
-                 "gate for them to get back home. As a team, they must travel back to the previous planets they visited in the current "
-                 "galaxy they are in to collect supplies from the space hubs and fix their communication system. They need a transmitter, "
-                 "transductor, and receiver to replace the current ones in the communciation system that doesn't work. If they are unable to"
-                 " fix their communication system, they will be unable to return home. Along the way, you will be helping them make decisions "
-                 "that will impact whether or not they will make it back to Earth. \n";
-}
-void wrongInput(){//general template for user entering wrong input
-    std::cout<<"You have entered an invalid choice.\n \n";
-}
 
- */
 
 
 
@@ -104,7 +85,7 @@ void gamePlay(){
     while(inventoryCount<4){
         switch (scenarioType){
             case GAMEOVER:
-                //playAgain();
+                playAgain();
                 break;
             case CHOOSEWORLD:
                 worldPrompt();//user chooses world
@@ -114,33 +95,14 @@ void gamePlay(){
 
                 break;
 
-            case UTARID:{
-                utarid uTest;
-                uTest.welcomeUtarid();
-                if(uTest.getTransmitterCount()==1){
-                    foundTransmitter++;
-                    printInv();
-                    worldPrompt();
-                }
-                else{
-                    playAgain();
-                }
-                break;}
+            case UTARID:
+                utaridCase();
+                break;
 
-            case VENERA:{
-                venera vTest;
-                vTest.welcomeVenera();
+            case VENERA:
+                veneraCase();
 
-                if(vTest.getReceiverCount() == 1){
-                    foundReceiver++;
-                    printInv();
-                    worldPrompt();//succeeded, choose world again
-                }
-                else {
-                    playAgain();// p
-                }
-
-                break;}
+                break;
 
         }
     }
@@ -148,71 +110,6 @@ void gamePlay(){
 
 }
 
-/*
-void roomChoice(){
-    int leftRight;
-    std::cout<<"The hub has two doors, the door to the left contains living areas and the door to the right"
-               " contains storage. The right storage room door is locked, should they try to unlock it or "
-               "search the unlocked room to the left?\n 1) Search Left \n 2) Try to unlock Right \n";
-    std::cin>>leftRight;
-
-    do{
-
-        switch(leftRight){
-            case 1://living quarters
-                std::cout<< "The living quarters are bare of most supplies, it looks like another group must have been here "
-                            "since the astronomers last visited. Should the astronomers search the kitchen or the bedroom area "
-                            "first?\n 1) Search kitchen\n 2) Search bedroom\n";
-                std::cin>> leftRight;
-
-                leftRight = 3;
-
-                break;
-
-            case 2:
-                int keyOrSuit;
-                std::cout<< "The team is unable to open the door with their space suits on, they might break them. The "
-                            "oxygen indicator in the hub shows a safe level, but their suits have not alerted them that "
-                            "it is safe. Should they:\n 1) Take off their suits to push on the door\n 2) Keep their suits "
-                            "on and search the key in the living area\n";
-                std::cin>>keyOrSuit;
-                switch(keyOrSuit){
-                    case 1:
-                        std::cout<<"The oxygen sensor in the hub was faulty. The team has died and you have failed to "
-                                   "bring them home.\n";
-                        finishVenera=1;
-                        scenarioType=GAMEOVER;
-                        return;
-                    case 2:
-                        leftRight=1;
-                        break;
-
-                }
-                break;
-            case 3:
-                std::cout<< "The astronomers unlock the storage room door, where there is a broken radio taken apart.\n";
-                invRand();
-                finishVenera = 1;
-                printInv();
-
-
-                scenarioType = CHOOSEWORLD;
-                break;
-            case 4:
-                std::cout<< "The team finds nothing in the kitchen, except the realization that their hunger levels are "
-                            "really high. Should they:\n 1) Find something to eat\n 2) Search the bedroom \n";
-
-
-
-
-
-        }
-    } while(finishVenera==0);
-
-
-
-}
-*/
 
 void worldPrompt(){//prompt to change case
     int worldChoice;
@@ -232,37 +129,10 @@ void worldPrompt(){//prompt to change case
             scenarioType=UTARID;
 
             break;
-        //default:
-            //wrongInput();
-    }
-}
-/*
-void findHub(){
-    int directionChoice;
-    while(receiverCount==0){
-        std::cout<< "The team has arrived at Venera. Should the astronomers search for the supply hub by choosing a"
-                    " direction, or finding higher ground?\n 1) Choose a direction\n 2) Search "
-                    "for higher ground\n";
-        std::cin>>directionChoice;
-        switch(directionChoice){
-            case 1:
-                std::cout<< "The astronomers have walked 7 miles and have not found anything. They do not have much "
-                            "time to find the hub before it gets dark, they decide to search for higher ground. Once "
-                            "they found higher ground they spotted the hub quickly. They wish that they would have "
-                            "searched for higher ground first.\n";
-                roomChoice();
-                return;
-            case 2:
-                std::cout<< "The astronomers found where the hub was with ease and are glad they did not spend their "
-                            "time searching aimlessly.\n";
-                roomChoice();
-                return;
-            default: wrongInput();
-        }
-    }
 
+    }
 }
-*/
+
 void playAgain(){
     foundReceiver=0;
     foundTransmitter=0;
@@ -273,10 +143,53 @@ void playAgain(){
 
 }
 
-
-
 void printInv(){
     std::cout<< "=============== \nCurrent Inventory\n===============\nReceiver: " << foundReceiver << "\nTransductor: ";
-    std::cout<< foundTransductor << "\nTransmitter: " << foundTransmitter << '\n';
+    std::cout<< foundTransductor << "\nTransmitter: " << foundTransmitter << "\n\n\n";
 }
 
+void visitedPlanet(){
+    std::cout<< "\n================================================================================================\n"
+                "You have already searched this world and found an item. The team will have to visit another planet.\n"
+                "================================================================================================\n\n";
+    worldPrompt();
+}
+
+
+void utaridCase(){
+    utarid uTest;
+    if(foundTransmitter==0){
+        uTest.welcomeUtarid(); //player enters utarid scenario
+        if(uTest.getTransmitterCount()==1){
+            foundTransmitter++;//adds to transmitter count
+            printInv();//prints players current inventory
+            worldPrompt();//prompts user to choose new world
+        }
+        else{
+            playAgain();
+        }
+    }
+    else{
+        visitedPlanet();//prompts user to choose another planet
+    }
+
+}
+
+void veneraCase(){
+    venera vTest;
+    if(foundReceiver==0){
+        vTest.welcomeVenera();//player enters venera scenario
+        if(vTest.getReceiverCount() == 1){
+            foundReceiver++;//adds to receiver count
+            printInv();//prints players current inventory
+            worldPrompt();//prompts user to choose new world
+        }
+        else {
+            playAgain();//
+        }
+    }
+    else{
+        visitedPlanet();//prompts user to choose another planet
+    }
+
+}

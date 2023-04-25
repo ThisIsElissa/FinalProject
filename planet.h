@@ -6,7 +6,7 @@ class planet {
 private:
 
 public:
-    void wrongInput();
+    static void wrongInput();//general template for user entering wrong input
     //void findHub();
     void planetChoice();
     void explorePlanet();

@@ -4,13 +4,12 @@
 #include <chrono>
 #include <thread>
 
-    void wrongInput() {//general template for user entering wrong input
+     void planet::wrongInput() {//general template for user entering wrong input
         std::cout << "You have entered an invalid choice.\n \n" << std::endl;
     }
 
 
-
-    void planetChoice() { // user chooses a planet
+    void planet::planetChoice() { // user chooses a planet
         int userPlanet;
         std::cout << "The astronomers are gathered around the ship's map to choose which world they will search. "
                      "\nChoose which world for them below:\n1) Venera\n2) Utarid\n";
@@ -26,6 +25,7 @@
                 break;
             default:
                 wrongInput();
+                break;
         }
     }
     /*

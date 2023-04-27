@@ -90,7 +90,7 @@ void erkir::doErkirHub()
             std::cout << "A crew member entered a conspicuous room. Spontaneously, an illness befalls them.\n";
             std::cout << "To your utmost inconvenience, the crew member begins feeling cold symptoms strangely instantaneously.\n";
             std::cout << "It is time for medic Charlie Messier to administer a treatment.\n";
-            std::cout << "Whoops, you ran out of aspirin after treating a crew member when you landed.\n";
+            std::cout << "Whoops, you ran out of penicilin after treating a crew member when you landed.\n";
             std::cout << "Everyone quickly succumbs to the illness.\n";
             return;
         }

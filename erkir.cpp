@@ -6,7 +6,7 @@
 #include <iostream>
 #include <thread>
 
-void erkir::welcomeErkir()
+void erkir::welcome()
 {
     std::cout << "The crew has reached planet Erkir!" << std::endl;
     std::cout << "Shortly after arriving at Erkir, someone has become mysteriously sick.\n";
@@ -61,8 +61,10 @@ int erkir::getTransductorCount()
 
 void erkir::getFinishErkir()
 {
-    std::cout << "Having obtained the transductor, the crew has finished business on planet Erkir.\n";
-    std::cout << "The crew hastily departs from the planet before someone gets sick again.\n";
+    if (getTransductorCount()) {
+        std::cout << "Having obtained the transductor, the crew has finished business on planet Erkir.\n";
+        std::cout << "The crew hastily departs from the planet before someone gets sick again.\n";
+    }
 }
 
 void erkir::doErkirHub()
@@ -88,7 +90,9 @@ void erkir::doErkirHub()
             std::cout << "A crew member entered a conspicuous room. Spontaneously, an illness befalls them.\n";
             std::cout << "To your utmost inconvenience, the crew member begins feeling cold symptoms strangely instantaneously.\n";
             std::cout << "It is time for medic Charlie Messier to administer a treatment.\n";
-            doMedic();
+            std::cout << "Whoops, you ran out of aspirin after treating a crew member when you landed.\n";
+            std::cout << "Everyone quickly succumbs to the illness.\n";
+            return;
         }
         else if (roomChoice == 3)
         {

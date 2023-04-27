@@ -1,7 +1,7 @@
 #include <iostream>
 #include "venera.h"
 
-void venera::welcomeVenera() {
+void venera::welcome() {
         std::cout << "\nThe crew has successfully landed on planet Venera!\n" << std::endl;
         findHub();
     }

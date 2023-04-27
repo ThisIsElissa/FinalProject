@@ -11,7 +11,7 @@ private:
     int finishEkir;
     int transductorCount=0;
 public:
-    void welcomeErkir();
+    void welcome();
     void getFinishErkir();
     void findTransductor();
     void doErkirHub();

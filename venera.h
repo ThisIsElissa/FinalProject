@@ -8,7 +8,7 @@ private:
     int finishVenera;
     int receiverCount=0;
 public:
-    void welcomeVenera();
+    void welcome();
     void roomChoice();
     int getFinishVenera();
     int getReceiverCount();

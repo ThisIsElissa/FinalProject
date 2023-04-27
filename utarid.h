@@ -12,7 +12,7 @@ private:
     int transmitterCount = 0;
 
 public:
-    void welcomeUtarid();
+    void welcome();
     void utaridHubScenario();
     void engineerScenario();
     void findingTransmitter();

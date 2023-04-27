@@ -153,7 +153,7 @@ void visitedPlanet(){
 void utaridCase(){
     utarid uTest;
     if(foundTransmitter==0){
-        uTest.welcomeUtarid(); //player enters utarid scenario
+        uTest.welcome(); //player enters utarid scenario
         if(uTest.getTransmitterCount()==1){
             foundTransmitter++;//adds to transmitter count
             printInv();//prints players current inventory
@@ -173,7 +173,7 @@ void utaridCase(){
 void veneraCase(){
     venera vTest;
     if(foundReceiver==0){
-        vTest.welcomeVenera();//player enters venera scenario
+        vTest.welcome();//player enters venera scenario
         if(vTest.getReceiverCount() == 1){
             foundReceiver++;//adds to receiver count
             printInv();//prints players current inventory
@@ -192,7 +192,7 @@ void veneraCase(){
 void erkirCase(){
     erkir eTest;
     if(foundTransductor==0){
-        eTest.welcomeErkir();//player enters venera scenario
+        eTest.welcome();//player enters venera scenario
         if(eTest.getTransductorCount() == 1){
             foundTransductor++;//adds to receiver count
             printInv();//prints players current inventory

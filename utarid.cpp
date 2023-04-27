@@ -4,7 +4,7 @@
 #include <iostream>
 #include "utarid.h"
 
-    void utarid::welcomeUtarid() {
+    void utarid::welcome() {
         std::cout << "\nThe crew has successfully landed on planet Utarid!\n" << std::endl;
         utaridHubScenario();
 
@@ -100,7 +100,7 @@ void utarid::findHub() {
     }
 }
     void utarid::playUtarid() {
-        welcomeUtarid();
+        welcome();
         utaridHubScenario();
         engineerScenario();
         findHub();
